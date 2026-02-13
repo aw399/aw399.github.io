@@ -17,7 +17,7 @@ const statusEl = document.createElement("p");
 form.parentNode.insertBefore(statusEl, form.nextSibling);
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-
+console.log("Form submitted!");
 const userID = document.getElementById("userID").value.trim();
 const wordDay = document.getElementById("wordDay").value.trim();
 const songDay = document.getElementById("songDay").value.trim();
@@ -34,24 +34,7 @@ const lvp = document.getElementById("lvp").value.trim();
 const vip = document.getElementById("vip").value.trim();
 const vent = document.getElementById("vent").value.trim();
 
-async function loadMessages() {
-  const list = document.getElementById("messagesList");
-  list.innerHTML = "";
-  const submissionsRef = collection(db, "responses", userID, "submissions");
-  const snapshot = await getDocs(submissionsRef);
 
-  snapshot.forEach(doc => {
-    const data = doc.data();
-    const date = data.submittedAt ? data.submittedAt.toDate() : null;
-    const formattedDate = date
-      ? date.toLocaleString("en-US", { month:"short", day:"numeric", year:"numeric", hour:"numeric", minute:"2-digit", hour12:true })
-      : "No date";
-
-    const li = document.createElement("li");
-    li.textContent = `Word: ${data.wordDay}, Song: ${data.songDay}, Thoughts: ${data.thoughts} — Submitted: ${formattedDate}`;
-    list.appendChild(li);
-  });
-}
 if (!userId) { 
   statusEl.textContent = "pleeeeease enter a valid ID."; 
   statusEl.className = "error"; 
@@ -85,4 +68,21 @@ try {
   statusEl.textContent = "failed to save, please try again.";
   statusEl.className = "error";
 }
-loadMessages();
+async function loadMessages() {
+  const list = document.getElementById("messagesList");
+  list.innerHTML = "";
+  const submissionsRef = collection(db, "responses", userID, "submissions");
+  const snapshot = await getDocs(submissionsRef);
+
+  snapshot.forEach(doc => {
+    const data = doc.data();
+    const date = data.submittedAt ? data.submittedAt.toDate() : null;
+    const formattedDate = date
+      ? date.toLocaleString("en-US", { month:"short", day:"numeric", year:"numeric", hour:"numeric", minute:"2-digit", hour12:true })
+      : "No date";
+
+    const li = document.createElement("li");
+    li.textContent = `Word: ${data.wordDay}, Song: ${data.songDay}, Thoughts: ${data.thoughts} — Submitted: ${formattedDate}`;
+    list.appendChild(li);
+  });
+};
