@@ -35,7 +35,7 @@ const vip = document.getElementById("vip").value.trim();
 const vent = document.getElementById("vent").value.trim();
 
 
-if (!userId) { 
+if (!userID) { 
   statusEl.textContent = "pleeeeease enter a valid ID."; 
   statusEl.className = "error"; 
   return; 
@@ -59,7 +59,7 @@ try {
         vent,
         submittedAt: serverTimestamp()
       });
-  statusEl.textContent = submission saved for ID: ${userId};
+  statusEl.textContent = "submission saved for ID: ${userId}";
   statusEl.className = "success";
   form.reset();
   loadMessages(userID);
@@ -69,7 +69,7 @@ try {
   statusEl.textContent = "failed to save, please try again.";
   statusEl.className = "error";
 }
-async function loadMessages() {
+async function loadMessages(userID) {
   const list = document.getElementById("messagesList");
   list.innerHTML = "";
   const submissionsRef = collection(db, "responses", userID, "submissions");
