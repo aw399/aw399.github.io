@@ -12,6 +12,11 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const testRef = collection(db, "responses", "testUser", "submissions");
+addDoc(testRef, { test: "hello", submittedAt: serverTimestamp() })
+  .then(() => console.log("Test write succeeded"))
+  .catch(err => console.error("Test write failed:", err));
+/*
 const form = document.getElementById("messageForm");
 const statusEl = document.createElement("p");
 form.parentNode.insertBefore(statusEl, form.nextSibling);
@@ -87,3 +92,4 @@ async function loadMessages(userID) {
     list.appendChild(li);
   });
 };
+*/
