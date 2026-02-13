@@ -2,14 +2,51 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>journal.</title>
+  <title>letter in a vacuum</title>
 </head>
 <body>
-  <h1>Submit Your Message</h1>
+  <h1>send a message.</h1>
+   <style>
+    body { font-family: Lucida Console, monospace; margin: 2em; }
+    form { max-width: 400px; }
+    input, textarea { width: 100%; margin-bottom: 1em; padding: 8px; }
+    button { padding: 10px 16px; cursor: pointer; }
+    .success { color: yellow; }
+    .error { color: red; }
+  </style>
   <form id="messageForm">
-    <input type="text" id="whoareyou" placeholder="ID" required><br><br>
-    <textarea id="message" placeholder="Your Message" required></textarea><br><br>
-    <button type="submit">Send</button>
+    <p>these are my buttons. it's like, button unwrapped.</p>
+    <label>User ID - can be anything, just make sure to use the same one when you submit anything. make it easy to remember, like your UCID.</label>
+    <input type="text" id="userID" placeholder="whoareyou" required><br><br>
+    <label>give me a word (just one).</label>
+    <input type="text" id="wordDay" pattern="^\S+$" placeholder="word." required></textarea><br><br>
+    <label>song?</label>
+    <input type="text" id="songDay" placeholder="no no not that one" required></textarea><br><br>
+    <label>what did you even do today</label>
+    <textarea id="dev" placeholder="uhhh idk" required></textarea><br><br>
+    <label>thoughts?</label>
+    <textarea id="thoughts" placeholder="not really." required></textarea><br><br>
+    <label>stressors...</label>
+    <textarea id="stressors" placeholder="worries? seriously?" required></textarea><br><br>
+    <label>reminder to reach out</label>
+    <textarea id="contact" placeholder="to who?" required></textarea><br><br>
+    <label>can they ship me off already</label>
+    <textarea id="ships" placeholder="..." required></textarea><br><br>
+    <label>ffffffic</label>
+    <textarea id="fics" placeholder="can you put emojis in this thing" required></textarea><br><br>
+    <label>caption it</label>
+    <textarea id="captions" placeholder="you don't even post" required></textarea><br><br>
+    <label>memorable quote</label>
+    <textarea id="quotes" placeholder="same vein" required></textarea><br><br>
+    <label>mvp</label>
+    <textarea id="mvp" placeholder="shh it's a secret!!!!" required></textarea><br><br>
+    <label>lvp</label>
+    <textarea id="lvp" placeholder="we all have our bad days..." required></textarea><br><br>
+    <label>i thought of you today</label>
+    <textarea id="vip" placeholder="did you really" required></textarea><br><br>
+    <label>say something to me (your final words :c).</label>
+    <textarea id="vent" placeholder="make it mean" required></textarea><br><br>
+    <button type="send">TAKE IT</button>
   </form>
 
   <h2>Messages</h2>
