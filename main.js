@@ -15,21 +15,22 @@ const db = getFirestore(app);
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-const userID = document.getElementById("userID").value.trim;
-const wordDay = document.getElementById("wordDay").value.trim;
-const songDay = document.getElementById("songDay").value.trim;
-const dev = document.getElementById("dev").value.trim;
-const thoughts = document.getElementById("thoughts").value.trim;
-const stressors = document.getElementById("stressors").value.trim;
-const contact = document.getElementById("contact").value.trim;
-const ships = document.getElementById("ships").value.trim;
-const fics = document.getElementById("fics").value.trim;
-const captions = document.getElementById("captions").value.trim;
-const quotes = document.getElementById("quotes").value.trim;
-const mvp = document.getElementById("mvp").value.trim;
-const lvp = document.getElementById("lvp").value.trim;
-const vip = document.getElementById("vip").value.trim;
-const vent = document.getElementById("vent").value.trim;
+const userID = document.getElementById("userID").value.trim();
+const wordDay = document.getElementById("wordDay").value.trim();
+const songDay = document.getElementById("songDay").value.trim();
+const dev = document.getElementById("dev").value.trim();
+const thoughts = document.getElementById("thoughts").value.trim();
+const stressors = document.getElementById("stressors").value.trim();
+const contact = document.getElementById("contact").value.trim();
+const ships = document.getElementById("ships").value.trim();
+const fics = document.getElementById("fics").value.trim();
+const captions = document.getElementById("captions").value.trim();
+const quotes = document.getElementById("quotes").value.trim();
+const mvp = document.getElementById("mvp").value.trim();
+const lvp = document.getElementById("lvp").value.trim();
+const vip = document.getElementById("vip").value.trim();
+const vent = document.getElementById("vent").value.trim();
+
   
   await addDoc(collection(db, "messages"), { name, message });
   form.reset();
@@ -52,8 +53,23 @@ if (!userId) {
   statusEl.className = "error"; 
   return; }
 try {
-  const submissionsRef = collection(db, "responses", userId, "submissions");
-  await addDoc(submissionsRef, { q1, q2, q3, submittedAt: serverTimestamp() });
+      await addDoc(submissionsRef, {
+        wordDay,
+        songDay,
+        dev,
+        thoughts,
+        stressors,
+        contact,
+        ships,
+        fics,
+        captions,
+        quotes,
+        mvp,
+        lvp,
+        vip,
+        vent,
+        submittedAt: serverTimestamp()
+      });
   statusEl.textContent = submission saved for ID: ${userId};
   statusEl.className = "success";
   form.reset();
