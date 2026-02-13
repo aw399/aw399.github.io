@@ -12,11 +12,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const testRef = collection(db, "responses", "testUser", "submissions");
-addDoc(testRef, { test: "hello", submittedAt: serverTimestamp() })
-  .then(() => console.log("Test write succeeded"))
-  .catch(err => console.error("Test write failed:", err));
-/*
+
 const form = document.getElementById("messageForm");
 const statusEl = document.createElement("p");
 form.parentNode.insertBefore(statusEl, form.nextSibling);
@@ -70,7 +66,7 @@ try {
   loadMessages(userID);
 } catch (err) {
   console.error("data could not be saved:", err);
-  alert("❌ Firestore error: " + err.message);
+  alert("firestore error: " + err.message);
   statusEl.textContent = "failed to save, please try again.";
   statusEl.className = "error";
 }
@@ -92,4 +88,3 @@ async function loadMessages(userID) {
     list.appendChild(li);
   });
 };
-*/
