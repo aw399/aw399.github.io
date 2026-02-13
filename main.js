@@ -12,13 +12,25 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
-const form = document.getElementById("messageForm");
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const name = document.getElementById("name").value;
-  const message = document.getElementById("message").value;
 
+const userID = document.getElementById("userID").value.trim;
+const wordDay = document.getElementById("wordDay").value.trim;
+const songDay = document.getElementById("songDay").value.trim;
+const dev = document.getElementById("dev").value.trim;
+const thoughts = document.getElementById("thoughts").value.trim;
+const stressors = document.getElementById("stressors").value.trim;
+const contact = document.getElementById("contact").value.trim;
+const ships = document.getElementById("ships").value.trim;
+const fics = document.getElementById("fics").value.trim;
+const captions = document.getElementById("captions").value.trim;
+const quotes = document.getElementById("quotes").value.trim;
+const mvp = document.getElementById("mvp").value.trim;
+const lvp = document.getElementById("lvp").value.trim;
+const vip = document.getElementById("vip").value.trim;
+const vent = document.getElementById("vent").value.trim;
+  
   await addDoc(collection(db, "messages"), { name, message });
   form.reset();
   loadMessages();
@@ -35,5 +47,17 @@ async function loadMessages() {
     list.appendChild(li);
   });
 }
-
+if (!userId) { statusEl.textContent = "pleeeeease enter a valid ID."; statusEl.className = "error"; return; }
+try {
+  const submissionsRef = collection(db, "responses", userId, "submissions");
+  await addDoc(submissionsRef, { q1, q2, q3, submittedAt: serverTimestamp() });
+  statusEl.textContent = submission saved for ID: ${userId};
+  statusEl.className = "success";
+  form.reset();
+}
+catch (err) {
+  console.error("data could not be saved:", err);
+  statusEl.textContent = "failed to save, please try again.";
+  statusEl.className = "error";
+}
 loadMessages();
